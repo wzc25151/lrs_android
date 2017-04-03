@@ -1,1 +1,3 @@
-#lrs_android
+
+##·ÂÀÇÈËÉ±Demo
+![lrsDemo](lrsDemo.gif)
