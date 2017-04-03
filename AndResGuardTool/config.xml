@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resproguard>
+    <issue id="property">
+        <seventzip value="true"/>
+        <metaname value="META-INF"/>
+        <keeproot value="false"/>
+    </issue>
+    <issue id="whitelist" isactive="true">
+       <path value="com.wzc.lrsdemo.R.mipmap.app_icon"/>
+    </issue>
+    <issue id="keepmapping" isactive="false">
+    </issue>
+    <issue id="compress" isactive="false">
+        <path value="*.png"/>
+        <path value="*.jpg"/>
+        <path value="*.jpeg"/>
+        <path value="*.gif"/>
+        <path value="resources.arsc"/>
+    </issue>
+    <issue id="sign" isactive="true">
+        <path value="wzc25151.jks"/>
+        <!--storepass-->
+        <storepass value="123499"/>
+        <!--keypass-->
+        <keypass value="123499"/>
+        <!--alias-->
+        <alias value="wzc25151"/>
+    </issue>
+</resproguard>

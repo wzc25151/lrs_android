@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resproguard>
+    <!--defaut property to set  -->
+
+	<!--Property主要设置一些通用属性-->
+    <issue id="property">
+
+		<!--是否使用7z重新压缩签名后的apk包。前提条件是安装好7z并且加入环境变量中，同时要求加入签名信息，不然不使用-->
+        <seventzip value="true"/>
+
+		<!--由于重打包时需要删除签名信息，考虑到这个文件名可能会被改变，所以使用者可手动输入签名信息对应的文件名。默认为META_INF-->
+        <metaname value="META-INF"/>
+
+		<!--是否将res/drawable混淆成r/s。true的话则不会将res/drawable混淆成r/s-->
+        <keeproot value="false"/>
+    </issue>
+
+	<!--Whitelist主要是用来设置白名单-->
+	<!--isactive ，是否打开白名单功能-->
+    <issue id="whitelist" isactive="true">
+		<!---- path ，白名单的列表，格式为package_name.R.type.specname。由于一个resources.arsc中可能会有多个包，所以这里要求写全包名。同时支持*，?通配符，例如: com.tencent.mm.R.drawable.emoji_*，com.tencent.mm.R.drawable.emoji_?-->
+		<!--注意：
+
+1、 若想通过getIdentifier方式获得资源，需要放置白名单中。 部分手机桌面快捷图标的实现有问题，务必将程序桌面icon加入白名单。
+
+2、 对于一些第三方sdk,例如友盟，可能需要将部分资源添加到白名单中。-->
+       <path value="com.wzc.lrsdemo.R.mipmap.app_icon"/>
+        <!--<path value="<your_package_name>.R.string.com.crashlytics.*"/>-->
+        <!--<path value="<your_package_name>.R.string.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.layout.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.drawable.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.anim.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.color.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.style.*UM*"/>-->
+        <!--<path value="<your_package_name>.R.style.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.id.umeng*"/>-->
+        <!--<path value="<your_package_name>.R.string.UM*"/>-->
+        <!--<path value="<your_package_name>.R.string.tb_*"/>-->
+        <!--<path value="<your_package_name>.R.layout.tb_*"/>-->
+        <!--<path value="<your_package_name>.R.drawable.tb_*"/>-->
+        <!--<path value="<your_package_name>.R.color.tb_*"/>-->
+    </issue>
+
+
+	<!--Keepmapping主要用来指定旧的mapping文件，为了保持一致性，我们支持输入旧的mapping文件，可保证同一资源文件在不同版本混淆后的名称保持一致。该文件在重打包生成，需额外保存。-->
+	<!-- isactive ，是否打开keepmapping模式-->
+    <issue id="keepmapping" isactive="false">
+
+<!-- path ，旧mapping文件的位置，linux用/, window用\-->
+   <!--     <path value="{your_mapping_path}"/>-->
+    </issue>
+
+<!--Compress主要用来指定文件重打包时是否压缩指定文件，默认我们重打包时是保持输入apk每个文件的压缩方式(即Stored或者Deflate)-->
+<!-- isactive ，是否打开compress模式-->
+    <issue id="compress" isactive="false">
+
+<!-- path ，需要被压缩文件的相对路径(相对于apk最顶层的位置)-->
+        <path value="*.png"/>
+        <path value="*.jpg"/>
+        <path value="*.jpeg"/>
+        <path value="*.gif"/>
+        <path value="resources.arsc"/>
+    </issue>
+
+	<!--Sign主要是对处理后的文件重签名，需要我们输入签名文件位置，密码等信息。若想使用7z功能就一定要填入相关信息。出于保密不想写在config.xml，可用-signature命令行设置模式，config.xml中的签名信息会被命令行覆盖，这里不再使用-->
+    <issue id="sign" isactive="true">
+        <path value="wzc25151.jks"/>
+        <!--storepass-->
+        <storepass value="123499"/>
+        <!--keypass-->
+        <keypass value="123499"/>
+        <!--alias-->
+        <alias value="wzc25151"/>
+    </issue>
+
+</resproguard>

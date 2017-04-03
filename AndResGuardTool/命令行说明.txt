@@ -1,0 +1,9 @@
+
+set jdkpath=D:\Program Files\Java\jdk1.7.0_79\bin\java.exe
+config ，指定具体config文件的路径；
+out ，指定生成文件具体的输出路径，其中混淆的mapping会在输出文件夹中以resource_mapping_(输入apk的名称).txt命名。
+signature ，指定签名信息，若在命令行设置会覆盖config.xml中的签名信息，顺序为签名文件路径、storepass、keypass、storealias。
+mapping ， 指定旧的mapping文件，保证同一资源文件在不同版本混淆后的名称保持一致。若在命令行设置会覆盖config.xml中的信息。
+7zip ，指定7zip的路径，若已添加到环境变量则不需要设置。此处必须为全路径，例如linux: /shwenzhang/tool/7za，Windows需要加上.exe 结尾。
+zipalign ，指定zipalign的路径，若已添加到环境变量则不需要设置。此处必须为全路径，例如linux: /shwenzhang/sdk/tools/zipalign，Windows需要加上.exe结尾。
+repackage ，如果想要出渠道包等需求，我们可能希望利用7zip直接重打包安装包。
